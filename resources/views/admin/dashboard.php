@@ -9,7 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="css/custom.css">
-    <title>Admin</title>
+    <title>JRP Insurance Lampung</title>
+    <link href="assets/img/jrpLogo.png" rel="icon">
+  <link href="assets/img/jrpLogo.png" rel="apple-touch-icon">
 </head>
 
 <body>
@@ -23,7 +25,7 @@
 				<a href="#"><i class='bx bxs-inbox icon'></i>Data Produk<i class='bx bx-chevron-right icon-right'></i></a>
 				<ul class="side-dropdown">
 					<li><a href="/produk-korporasi">Korporasi</a></li>
-					<li><a href="">Retail</a></li>
+					<li><a href="/produk-retail">Retail</a></li>
 				</ul>
             </li>
             <li>
@@ -119,11 +121,19 @@
 												</tr>
 											</thead>
 											<tbody>
+                                                <?php $i = 1; ?>
 												<tr>
-                                                    <td>1</td>
-													<td>shafa</td>
-													<td>shafa</td>
+                                                    <td><?= $i ?></td>
+													<td></td>
+													<td>
+                                                    <ul class="list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
 												</tr>
+                                                <?php $i++; ?>
 											</tbody>
 										</table>
 									</div>
@@ -140,6 +150,13 @@
 									<h6 class="card-title">Penghargaan</h6>
 								</div>
 							</div>
+                            <div class="col-md-6">
+                            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                                <div>
+                                    <a href="" class="btn btn-primary"><i class="bx bx-plus me-1"></i>Tambah Data</a>
+                                </div>
+                            </div>
+					</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-12">
@@ -156,13 +173,27 @@
 												</tr>
 											</thead>
 											<tbody>
+                                            <?php $i = 1; ?>
 												<tr>
-													<td>1</td>
-													<td>shafa</td>
-													<td>shafa</td>
-													<td>shafa</td>
-                                                    <td>shafa</td>
+                                                    <td><?= $i ?></td>
+													<td></td>
+													<td></td>
+													<td></td>
+                                                    <td>
+                                                    <ul class="list-inline mb-0">
+                                                        <li class="list-inline-item">
+                                                            <a href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                            <form action="" method="post" class="d-inline">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" class="btn btn-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                                    <i class="bx bx-trash-alt font-size-18 text-danger"></i>
+                                                                </button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </td>
 												</tr>
+                                                <?php $i++; ?>
 											</tbody>
 										</table>
 									</div>

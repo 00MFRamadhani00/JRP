@@ -24,3 +24,15 @@ Route::get('/dashboard', function () {
 Route::get('/produk-korporasi', function () {
     return view('admin.data_produk_korporasi');
 });
+
+Route::get('/produk-retail', function () {
+    return view('admin.data_produk_retail');
+});
+
+Route::get('/edit-produkKorporasi', function () {
+    return view('admin.edit_produk_korporasi');
+});
+
+Route::get('/edit-produkRetail', function () {
+    return view('admin.edit_produk_retail');
+});
