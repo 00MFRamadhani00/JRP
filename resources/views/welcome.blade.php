@@ -38,7 +38,7 @@
 </head>
 
 <body>
-
+  <div id="preloader"></div>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
@@ -547,40 +547,40 @@
                 <p>0721 801 4081</p>
               </div>
 
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.48790723895786!2d105.26151772204915!3d-5.431663697129779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40da3414b57f09%3A0xfca10192202a3818!2sJasaraharja%20Putera!5e0!3m2!1sen!2sus!4v1705291901483!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.48790723895786!2d105.26151772204915!3d-5.431663697129779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40da3414b57f09%3A0xfca10192202a3818!2sJasaraharja%20Putera!5e0!3m2!1sen!2sus!4v1705291901483!5m2!1sen!2sus" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
+            <form id="contactForm" action="{{ route('submit-form') }}" method="post" role="form" class="php-email-form">
+                @csrf
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="name">Your Name</label>
+                        <input type="text" name="name" class="form-control" id="name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Your Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject" required>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" id="message" rows="10" required></textarea>
+                </div>
+                <div class="my-3">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button id="sendMessageButton" type="submit" disabled>Send Message</button></div>
             </form>
-          </div>
-
+        </div>
         </div>
 
       </div>
@@ -604,7 +604,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
+  
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -618,7 +618,40 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    const sendMessageButton = document.getElementById('sendMessageButton');
 
+    // Menangani perubahan di dalam formulir
+    form.addEventListener('change', function(event) {
+        if (validateForm()) {
+            // Jika formulir valid, aktifkan tombol
+            sendMessageButton.disabled = false;
+            location.reload();
+        } else {
+            // Jika formulir tidak valid, nonaktifkan tombol
+            sendMessageButton.disabled = true;
+        }
+    });
+
+    // Fungsi untuk memvalidasi formulir
+    function validateForm() {
+        let isValid = true;
+
+        // Memeriksa setiap input
+        form.querySelectorAll('input, textarea').forEach(function(input) {
+            if (!input.checkValidity()) {
+                // Jika input tidak valid, tandai sebagai tidak valid dan set isValid menjadi false
+                input.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+
+        return isValid;
+    }
+  </script>
 </body>
 
 </html>

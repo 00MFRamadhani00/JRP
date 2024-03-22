@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,8 @@ Route::get('/edit-produkKorporasi', function () {
 Route::get('/edit-produkRetail', function () {
     return view('admin.edit_produk_retail');
 });
+
+Route::post('/submit-form', [MessageController::class, 'store'])->name('submit-form');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
