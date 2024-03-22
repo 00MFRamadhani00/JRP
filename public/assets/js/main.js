@@ -163,6 +163,8 @@
     window.addEventListener('load', () => {
       preloader.remove()
     });
+  } else {
+    console.error("Preloader element not found. Skipping removal.");
   }
 
   /**
